@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(216, 73, 73, 0.591);
+}
+
+header {
+  background-color: #b71c1c;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: relative;
+}
+
+header h1 {
+  font-size: 2rem;
+  text-shadow: 2px 2px 0 #000;
+}
+
+main {
+  max-width: 600px;
+  margin: 4rem auto;
+  background:  rgba(216, 73, 73, 0.797);
+  padding: 10rem;
+  border-radius: 15px;
+  border: 5px solid #d32f2f;
+  box-shadow: 0 0 25px rgba(255, 87, 51, 0.4);
+}
