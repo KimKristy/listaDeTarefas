@@ -29,12 +29,23 @@ function adicionarTarefa() {
     listarTarefas();
     Swal.fire({
       icon: "success",
-      title: "Tarefa adicionada com sucesso",
-      text: "Preencha o campo Tarefa",
+      title: "Tarefa Adicionada com sucesso",
       showConfirmButton: false,
       timer: 1500,
     });
   }
+}
+
+//função para adicionr com o botão enter
+const taskInput = document.getElementById("task");
+
+if (taskInput) {
+  taskInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      adicionarTarefa();
+    }
+  });
 }
 
 //FUNÇÃO LISTAR TAREFAS
@@ -42,7 +53,13 @@ function adicionarTarefa() {
 function listarTarefas() {
   let valor = "";
   for (let i = 0; i < tarefa.length; i++) {
-    valor += tarefa[i] + "<br>";
+    valor += `
+            <div class="task-item">
+                <span>${tarefa[i]}</span>
+                <button onclick="editarTarefa(${i})">Editar</button>
+            </div>
+        
+        `;
   }
   document.getElementById("lista").innerHTML = valor;
 }
@@ -52,17 +69,41 @@ function listarTarefas() {
 function removerTarefa() {
   Swal.fire({
     icon: "warning",
-    title: "Tem certeza que deseja Apagar?",
-    text: "Essa Tarefa Sera Apagada",
+    title: "Tem certeza que deseja Apagar ?",
+    text: "Essa tarefa será apagada",
     showCancelButton: true,
     confirmButtonColor: "#6B095BFF",
     confirmButtonText: "Sim, Remover",
     cancelButtonText: "Cancelar",
   }).then((result) => {
     if (result.isConfirmed) {
-      tarefa.pop(); //REMOVE O ULTIMO ITEM ADICIONADO
+      tarefa.pop();
       listarTarefas();
       Swal.fire("Apagado", "A tarefa foi removida da lista", "success");
     }
   });
+}
+
+//FUNÇÃO EDITAR TAREFA
+
+function editarTarefa(indice) {
+  document.getElementById("task").value = tarefa[indice];
+  indiceEditar = indice;
+  document.getElementById("task").focus();
+}
+
+//FUNÇÃO SALVAR TAREFA
+
+function salvarTarefa() {
+  if (validarCampo()) {
+    alert("Preencha o campo tarefa");
+  } else if (indiceEditar !== -1) {
+    tarefa[indiceEditar] = document.getElementById("task").value;
+    document.getElementById("task").value = "";
+    listarTarefas();
+    alert("Tarefa alterada com sucesso");
+  } else {
+    console.log("nenhuma tarefa selecionada");
+  }
+  document.getElementById("task").focus();
 }
