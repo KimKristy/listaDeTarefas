@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- CSS EXTERNO -->
-    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/style.css" />
     <!-- FRAMEWORK EXTERNO -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Lista Tarefas</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <header>
-        <h1>Lista de Tarefas</h1>
+      <h1>Lista de Tarefas</h1>
     </header>
     <main>
-        <p>
-            <label for="task">Tarefa:</label>
-            <input type="text" id="task">
-        </p>
-        <button id="adicionarTarefa" onclick="adicionarTarefa()">Adicionar Tarefa</button>
-        <button id="salvarTarefa" onclick="salvarTarefa()">Salvar Tarefa</button>
-        <button id="removerTarefa" onclick="removerTarefa()">Remover Tarefa</button>
+      <p>
+        <label for="task">Tarefa:</label>
+        <input type="text" id="task" />
+      </p>
+      <button id="adicionarTarefa" onclick="adicionarTarefa()">
+        Adicionar Tarefa
+      </button>
+      <button id="salvarTarefa" onclick="salvarTarefa()">Salvar Tarefa</button>
 
-        <p id="lista"></p>
+      <p id="lista"></p>
     </main>
-    
+
     <!-- JS EXTERNO -->
     <script src="./src/js/script.js"></script>
-</body>
+  </body>
 </html>

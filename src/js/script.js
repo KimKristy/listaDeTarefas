@@ -15,7 +15,6 @@ function adicionarTarefa() {
   let linha = document.getElementById("task");
 
   if (validarCampo()) {
-    //alert("Preencha o campo Tarefa")
     Swal.fire({
       icon: "warning",
       title: "Atenção",
@@ -57,6 +56,7 @@ function listarTarefas() {
             <div class="task-item">
                 <span>${tarefa[i]}</span>
                 <button onclick="editarTarefa(${i})">Editar</button>
+                <button id="removerTarefa" onclick="removerTarefa()">Remover Tarefa</button>
             </div>
         
         `;
@@ -69,7 +69,7 @@ function listarTarefas() {
 function removerTarefa() {
   Swal.fire({
     icon: "warning",
-    title: "Tem certeza que deseja Apagar ?",
+    title: "Tem certeza que deseja Apagar?",
     text: "Essa tarefa será apagada",
     showCancelButton: true,
     confirmButtonColor: "#6B095BFF",
@@ -77,7 +77,7 @@ function removerTarefa() {
     cancelButtonText: "Cancelar",
   }).then((result) => {
     if (result.isConfirmed) {
-      tarefa.pop();
+      tarefa.splice(i, 1);
       listarTarefas();
       Swal.fire("Apagado", "A tarefa foi removida da lista", "success");
     }
@@ -90,6 +90,16 @@ function editarTarefa(indice) {
   document.getElementById("task").value = tarefa[indice];
   indiceEditar = indice;
   document.getElementById("task").focus();
+
+  Swal.fire({
+    icon: "question",
+    title: "Tem certeza que deseja Editar?",
+    text: "Essa tarefa será editada",
+    showCancelButton: true,
+    confirmButtonColor: "#6B095BFF",
+    confirmButtonText: "Sim, Editar",
+    cancelButtonText: "Cancelar",
+  });
 }
 
 //FUNÇÃO SALVAR TAREFA
@@ -101,9 +111,10 @@ function salvarTarefa() {
     tarefa[indiceEditar] = document.getElementById("task").value;
     document.getElementById("task").value = "";
     listarTarefas();
-    alert("Tarefa alterada com sucesso");
   } else {
     console.log("nenhuma tarefa selecionada");
   }
   document.getElementById("task").focus();
+
+  Swal.fire("Editado", "A tarefa foi editada", "success");
 }
